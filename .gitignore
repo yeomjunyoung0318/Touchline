@@ -1,0 +1,27 @@
+.env
+.env.*
+!.env.example
+node_modules/
+*.log
+.runtime/
+/data/fc27-players.json*
+/data/cmtracker-growth-profiles.json
+
+# Local release bundles and third-party research snapshots
+/*.zip
+/research/
+# Personal browser exports / backups
+/backup*.json
+
+# QA exports can contain private squad or account context
+/qa/*.json
+/qa/*.csv
+
+
+# Redistribution rights not confirmed; optional lookup must stay local
+/data/fc27-growth-profiles.json
+
+
+# Abandoned demo drafts: kept locally, not part of the project release
+/tools/demo-fixture.cjs
+/tools/demo.cjs

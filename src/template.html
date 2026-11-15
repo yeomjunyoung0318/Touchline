@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#081b26">
+  <meta name="description" content="내 PC에서 사용하는 한국어 FC 27 커리어 스쿼드 빌더. 포메이션, 드래그 배치, 스타일 추천, 스탯 조정 계산기.">
+  <title>터치라인 — 나만의 FC 27 커리어</title>
+  <style>/* TOUCHLINE_STYLE */
+/* TOUCHLINE_FC_THEME */
+/* TOUCHLINE_CAREER_STYLE */</style>
+</head>
+<body data-current-view="board">
+  <div class="career-backdrop" aria-hidden="true">
+    <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="career-wash" x1="0" y1="1" x2="1" y2="0">
+          <stop stop-color="#0c1634"/><stop offset=".5" stop-color="#0c4851"/><stop offset="1" stop-color="#1c9c83"/>
+        </linearGradient>
+        <radialGradient id="career-light"><stop stop-color="#4bf3ce" stop-opacity=".28"/><stop offset="1" stop-color="#4bf3ce" stop-opacity="0"/></radialGradient>
+      </defs>
+      <rect width="1600" height="1000" fill="url(#career-wash)"/>
+      <ellipse cx="1280" cy="140" rx="760" ry="720" fill="url(#career-light)"/>
+      <g fill="none" stroke="#8df4de" stroke-width="2" opacity=".13">
+        <path d="M-160 650 180 60 650 10 1060 390 1420 160 1750 280"/>
+        <path d="M180 60 350 470 1060 390 1220 890 1750 280"/>
+        <path d="M-160 650 350 470 780 1010 1220 890 1580 1050"/>
+        <path d="m650 10 90 280 320 100 180-420"/>
+      </g>
+      <g fill="#80ead8" opacity=".035">
+        <path d="m180 60 170 410 710-80-410-380Z"/>
+        <path d="m1060 390 360-230 330 120-530 610Z"/>
+      </g>
+    </svg>
+    <div class="career-floor"></div>
+  </div>
+  <svg class="svg-defs" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+    <symbol id="i-pitch" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18M8 3v4h8V3M8 21v-4h8v4"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3ZM20 2v4M18 4h4"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h6m4 0h6M4 17h10m4 0h2"/><circle cx="12" cy="7" r="2"/><circle cx="16" cy="17" r="2"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4m-5 5 5-5 5 5M4 16v5h16v-5"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 4v3"/></symbol>
+    <symbol id="i-unlock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 7.5-2M12 14v3"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 4 3 10l6 6M3 10h11a6 6 0 0 1 0 12"/></symbol>
+    <symbol id="i-redo" viewBox="0 0 24 24"><path d="m15 4 6 6-6 6m6-6H10a6 6 0 0 0 0 12"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h5l3 4h6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v1"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="m15 4 5 5M4 20l5-1L21 7l-5-5L4 14v6Z"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7"/></symbol>
+    <symbol id="i-person" viewBox="0 0 64 64"><circle cx="32" cy="20" r="12" fill="currentColor" stroke="none"/><path d="M9 63v-9c0-13 10-20 23-20s23 7 23 20v9" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-move" viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M8 6l4-4 4 4M8 18l4 4 4-4M6 8l-4 4 4 4M18 8l4 4-4 4"/></symbol>
+  </defs></svg>
+  <a class="skip-link" href="#main">본문으로 이동</a>
+  <header class="site-header">
+    <div class="brand"><span class="brand-mark"><svg><use href="#i-pitch"/></svg></span><div><strong>터치라인<span class="brand-dot">.</span></strong><span class="brand-caption">YOUR CLUB. YOUR CALL.</span></div><span class="career-mode-label">FC 27 <b>커리어 스튜디오</b></span></div>
+    <div class="header-right"><span class="local-badge"><i></i>로컬 커리어</span><button class="btn ghost small" data-action="help" aria-label="사용 안내"><svg><use href="#i-info"/></svg><span>사용 안내</span></button><button class="btn secondary small" data-action="data" aria-label="선수 데이터"><svg><use href="#i-upload"/></svg><span>선수 데이터</span></button><button class="btn primary small" data-action="backup" aria-label="백업 저장"><svg><use href="#i-download"/></svg><span>백업 저장</span></button></div>
+  </header>
+  <main id="main" class="app-shell">
+    <div class="intro"><div><p class="eyebrow">MANAGER CAREER / SQUAD MANAGEMENT</p><h1>스쿼드 <span>관리</span></h1><p class="intro-copy">선발을 짜고, 역할을 정하고, 나만의 전술을 완성하세요.</p></div><div class="intro-label"><span>CAREER SEASON</span><b>2026 <i>/</i> 27</b><span>MAKE IT YOURS.</span></div></div>
+    <div id="storage-banner" class="notice danger hidden" role="alert"></div>
+    <div class="navigation-row"><nav class="view-nav" aria-label="주요 기능"><button class="view-tab active" data-view="board" aria-current="page"><svg><use href="#i-pitch"/></svg>스쿼드 보드</button><button class="view-tab" data-view="recommend"><svg><use href="#i-spark"/></svg>선수 추천</button><button class="view-tab" data-view="editor"><svg><use href="#i-sliders"/></svg>스탯 계산기<span class="tiny-badge">추정</span></button></nav><div class="nav-meta"><span id="data-indicator">내 선수 0명 · API 0명</span><span class="offline-indicator">API 없이 실행 중</span></div></div>
+    <section id="view-board" class="view-panel" aria-label="스쿼드 보드">
+      <div class="squad-overview">
+        <section class="squad-top"><div class="squad-identity"><span class="squad-crest">T<span>27</span></span><div><label class="field-eyebrow" for="squad-name">MY SQUAD</label><input id="squad-name" class="squad-name" maxlength="50" aria-label="스쿼드 이름"><div class="save-status" id="save-status" role="status">브라우저 자동 저장</div></div></div><button class="btn secondary small" data-action="squads"><svg><use href="#i-folder"/></svg>내 스쿼드</button></section>
+        <div id="squad-summary" class="summary-row"></div>
+      </div>
+      <div class="board-layout">
+        <section class="pitch-panel" aria-label="포메이션과 경기장">
+          <div class="pitch-toolbar"><div><span class="field-eyebrow">FORMATION</span><select id="formation-select" aria-label="포메이션 선택"></select></div><div class="pitch-view-switch" role="group" aria-label="경기장 표시"><button type="button" data-pitch-view="players" aria-pressed="true">선수</button><button type="button" data-pitch-view="roles" aria-pressed="false">역할</button></div><div class="pitch-tools"><span class="custom-indicator hidden" id="custom-indicator">자유 배치</span><button class="icon-btn" data-action="undo" aria-label="실행 취소" title="실행 취소 (Ctrl+Z)"><svg><use href="#i-undo"/></svg></button><button class="icon-btn" data-action="redo" aria-label="다시 실행" title="다시 실행 (Ctrl+Shift+Z)"><svg><use href="#i-redo"/></svg></button><button class="btn secondary small" data-action="player-roles"><svg><use href="#i-sliders"/></svg>선수 역할</button><button class="btn ghost small" data-action="reset-positions" aria-label="기본 배치" title="기본 배치"><svg><use href="#i-pitch"/></svg><span>기본 배치</span></button></div></div>
+          <div class="pitch" id="pitch" aria-label="선수를 드래그하거나 클릭해서 배치하는 경기장">
+            <div class="pitch-grass"></div><svg class="pitch-lines" viewBox="0 0 680 700" preserveAspectRatio="none" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.1"><rect x="26" y="25" width="628" height="650" rx="2"/><path d="M26 350h628"/><circle cx="340" cy="350" r="78"/><circle cx="340" cy="350" r="3" fill="currentColor"/><path d="M175 25v118h330V25M258 25v48h164V25M175 675V557h330v118M258 675v-48h164v48M277 143a77 77 0 0 0 126 0M277 557a77 77 0 0 1 126 0M26 37a12 12 0 0 0 12-12m604 0a12 12 0 0 0 12 12M26 663a12 12 0 0 1 12 12m604 0a12 12 0 0 1 12-12"/><circle cx="340" cy="113" r="2" fill="currentColor"/><circle cx="340" cy="587" r="2" fill="currentColor"/></g></svg>
+            <span class="pitch-watermark" aria-hidden="true">TOUCHLINE</span><div id="pitch-slots"></div>
+          </div>
+          <div class="pitch-caption"><span><svg><use href="#i-move"/></svg><span id="pitch-hint">드래그해 이동 · 선수 위에 놓아 교체</span></span><span><i class="legend-dot"></i>주·보조 포지션 <i class="legend-dot amber"></i>포지션 전환</span></div>
+        </section>
+        <aside class="library-panel" aria-label="선수 검색과 정보"><div class="library-header"><h2>나의 선수 목록<span id="player-total"></span></h2><button class="icon-btn lime" data-action="add-player" aria-label="선수 직접 추가" title="선수 직접 추가"><svg><use href="#i-plus"/></svg></button></div><div class="library-tabs"><button data-library="list" class="active">내 선수</button><button data-library="detail">선수 정보</button></div><div id="library-list"><div class="search-wrap"><svg><use href="#i-search"/></svg><input id="player-search" type="search" autocomplete="off" placeholder="이름, 초성, 소속팀 검색" aria-label="선수 검색"></div><div class="filter-row"><select id="position-filter" aria-label="포지션 필터"><option value="">모든 포지션</option></select><select id="sort-filter" aria-label="선수 정렬"><option value="overall">OVR 높은 순</option><option value="potential">잠재력 높은 순</option><option value="age">나이 어린 순</option><option value="name">이름순</option></select></div><details class="advanced-filters"><summary>상세 필터 <svg><use href="#i-sliders"/></svg></summary><div class="numeric-filters"><label>최대 나이<input id="age-filter" type="number" min="14" max="65" placeholder="제한 없음"></label><label>최소 OVR<input id="ovr-filter" type="number" min="1" max="99" placeholder="1"></label><label>최소 POT<input id="pot-filter" type="number" min="1" max="99" placeholder="1"></label></div></details><div class="list-meta"><span id="result-count"></span><span>OVR <i>/</i> POT</span></div><p id="placement-hint" class="placement-hint"></p><div id="player-results" class="player-results"></div></div><div id="library-detail" class="hidden"></div><div class="library-footer"><svg><use href="#i-info"/></svg><p>선수 검색에서 내 선수 목록에 추가할 수 있어요.</p></div></aside>
+        <div class="squad-depth">
+          <section class="bench-panel"><div class="section-heading"><div><p class="eyebrow">ON THE SIDELINE</p><h2>후보 선수 <span id="bench-count">0 / 9</span></h2></div><button class="btn ghost small" data-action="clear-squad"><svg><use href="#i-trash"/></svg>스쿼드 비우기</button></div><div id="bench-slots" class="bench-grid"></div><details class="reserves-details"><summary>예비 선수 <span id="reserve-count">0 / 9</span></summary><div id="reserve-slots" class="bench-grid"></div></details></section>
+          <section class="notes-panel"><label for="squad-notes">감독 노트<span>영입 계획이나 전술 아이디어를 남겨보세요.</span></label><textarea id="squad-notes" maxlength="5000" rows="2" placeholder="예: 왼쪽 윙은 안으로, 풀백은 넓게. 다음 시즌에는 수비형 미드필더 보강."></textarea></section>
+        </div>
+      </div>
+    </section>
+    <section id="view-recommend" class="view-panel hidden" aria-label="커리어 선수 추천">
+      <div class="feature-title career-title"><div><h2>선수 추천</h2><p>스카우트 보고서를 비교하고 관심 명단과 이적 협상을 관리하세요.</p></div></div>
+      <nav class="career-nav segmented" aria-label="선수 추천 메뉴">
+        <button type="button" data-career-tab="scout" class="active" aria-pressed="true">스카우팅</button>
+        <button type="button" data-career-tab="lists" aria-pressed="false">관심 명단</button>
+        <button type="button" data-career-tab="transfers" aria-pressed="false">이적 협상</button>
+        <button type="button" data-career-tab="staff" aria-pressed="false">스태프와 성장</button>
+        <button type="button" data-career-tab="eleven" aria-pressed="false">스쿼드 구성</button>
+      </nav>
+      <div id="career-hub">
+        <section id="career-scout"></section>
+        <section id="career-lists" hidden></section>
+        <section id="career-transfers" hidden></section>
+        <section id="career-staff" hidden></section>
+      </div>
+      <div id="career-eleven" hidden><div class="recommend-layout"><section class="recommend-controls panel"><h3>플레이 스타일</h3><div id="style-options" class="style-options"></div><h3>스쿼드의 방향</h3><div class="segmented" id="focus-options"><button data-focus="balanced" class="active">균형 있게</button><button data-focus="youth">유망주 중심</button><button data-focus="ready">즉시 전력</button></div><h3>포메이션</h3><select id="recommend-formation" aria-label="추천 포메이션 선택"><option value="auto">스타일에 맞게 추천</option><option value="current">현재 포메이션 유지</option></select><h3><label for="recommend-gender">남자·여자</label></h3><select id="recommend-gender" aria-label="추천 선수 분류"><option value="">전체</option><option value="male">남자</option><option value="female">여자</option></select><p class="muted fine-print">선수 DB의 리그 분류를 사용해요.</p><div class="squad-budget-controls"><h3>스쿼드 전체 예산</h3><label for="squad-budget-currency">통화</label><select id="squad-budget-currency"><option value="eur">EUR (€)</option><option value="gbp">GBP (£)</option><option value="usd">USD ($)</option></select><label for="squad-fee-budget">총 영입 예산 (백만)</label><input id="squad-fee-budget" type="number" min="0" max="10000" step="0.000001" placeholder="미설정"><label for="squad-wage-budget">선수단 전체 주급 한도 (천)</label><input id="squad-wage-budget" type="number" min="0" max="100000" step="0.001" placeholder="미설정"><label class="career-check"><input id="squad-allow-sales" type="checkbox"><span>방출·매각 후보와 수익까지 함께 계산</span></label><label for="squad-max-sales">최대 매각 인원</label><input id="squad-max-sales" type="number" required min="0" max="5" value="3"><label for="squad-sale-value">시세 대비 예상 매각가 (%)</label><input id="squad-sale-value" type="number" required min="10" max="100" value="80"><label for="squad-reinvestment">매각 수익의 영입 예산 반영률 (%)</label><input id="squad-reinvestment" type="number" required min="0" max="100" value="100"><p class="muted fine-print">매각은 성사 가정으로만 반영해요. 고정 선수·필요한 커버·선수층을 보호하고, 매각 선수를 제외한 배치안을 제안합니다.</p><p class="muted fine-print">한도를 입력하면 사파·커버를 함께 배치하는 영입 조합을 비교해요. 주급은 기존 선수와 감독 구단 소속 선수까지 포함합니다. 빈칸은 해당 한도 없음, 0은 지출 불가예요.</p></div><div class="notice"><svg><use href="#i-lock"/></svg><p id="recommend-lock-hint">경기장의 자물쇠를 누르면 추천 시 그 선수와 위치를 유지해요.</p></div><button class="btn primary wide" id="recommend-button" data-action="recommend"><svg><use href="#i-spark"/></svg>나에게 맞는 스쿼드 추천</button><p class="muted fine-print">전체 예산을 설정하면 선발 보강과 사파 커버를 함께 계산하고, 후보·예비는 기존 선수로 구성해요. 스카우팅의 1인 예산과는 별도입니다.</p></section><section class="recommend-output panel" id="recommend-output"><div class="empty-state large"><span class="empty-icon"><svg><use href="#i-spark"/></svg></span><h3>생각한 축구를 그려보세요.</h3><p>스타일을 고르고 추천을 눌러주세요.<br>선수마다 선택한 이유를 함께 보여드릴게요.</p></div></section></div></div>
+    </section>
+    <section id="view-editor" class="view-panel hidden" aria-label="포지션 전환과 스탯 계산기"><div class="feature-title"><div><p class="eyebrow">DEVELOPMENT / PLAYER RATINGS</p><h2>스탯 계산기</h2><p>포지션을 바꿨을 때의 OVR와 목표 수치까지 필요한 스탯을 비교하세요.</p></div><span class="feature-tag amber">FC27 DB 학습 가중치 추정</span></div><div class="estimate-disclaimer"><svg><use href="#i-info"/></svg><p><b>실제 게임 수치가 아닌 계획용 추정치입니다.</b> EA의 공식 OVR 계산식은 적용하지 않았습니다. PS5 세이브를 읽거나 게임에 자동 적용하지 않으며, 게임 속 훈련·성장·포지션 전환 결과를 보장하지 않습니다.</p></div><div class="editor-layout"><section class="panel editor-controls"><div class="editor-select-grid"><label>선수<select id="editor-player" aria-label="계산할 선수"></select></label><label>주 포지션<select id="editor-primary" aria-label="계산 기준 주 포지션"></select></label><label>현재 OVR<input id="editor-overall" type="number" min="1" max="99"></label><label>목표 포지션<select id="editor-position" aria-label="목표 포지션"></select></label><label>목표 OVR<input id="editor-target" type="number" min="1" max="99" value="85"></label><label>변경안 스타일<select id="editor-style"><option value="possession">점유율</option><option value="counter">빠른 역습</option><option value="press">높은 압박</option></select></label></div><label for="editor-archetype">원하는 선수 유형</label><select id="editor-archetype"></select><div id="editor-stat-constraints" class="notice"></div><div id="position-preview" class="position-preview"></div><div class="section-heading compact"><h3>현재 세부 스탯</h3><button class="btn ghost small" data-action="reset-editor">저장된 스탯 다시 불러오기</button></div><p class="muted fine-print">직접 입력한 값이 계산 기준이 됩니다. 빈칸은 미입력으로 취급하며, 선수 원본은 변경하지 않습니다.</p><div id="editor-attributes" class="attribute-groups"></div><button class="btn primary wide" data-action="calculate"><svg><use href="#i-sliders"/></svg>스탯 변경안 계산</button><details class="formula-details"><summary>추정 방식 자세히 보기</summary><p>포지션 점수 = 해당 포지션의 세부 스탯 가중 평균.<br>전환 OVR 추정 = 입력 OVR + 목표 포지션 점수 − 주 포지션 점수.<br>변경 후 추정 = 입력 OVR + 변경 후 목표 포지션 점수 − 변경 전 주 포지션 점수.</p><p>주 포지션과 목표 포지션 계산에 필요한 스탯이 있어야 계산됩니다. 스탯은 1~99 범위에서 조정하며, POT·체형·개인기·약발·플레이스타일·게임의 내부 보정은 반영하지 않습니다.</p><div id="formula-weights"></div></details></section><section class="panel editor-output" id="editor-output"><div class="empty-state large"><span class="empty-icon"><svg><use href="#i-sliders"/></svg></span><h3>성장의 방향을 찾아보세요.</h3><p>선수와 목표 포지션, OVR를 고르면<br>스탯 변경 전후를 세 가지 방식으로 비교합니다.</p></div></section></div></section>
+    <section id="view-player" class="view-panel hidden" aria-label="선수 상세">
+      <div class="profile-nav"><button class="btn secondary small" type="button" data-action="leave-player-profile"><svg aria-hidden="true"><use href="#i-arrow"/></svg><span id="profile-back-label">선수 검색으로</span></button></div>
+      <div id="player-profile-content"></div>
+    </section>
+    <footer class="site-footer"><span><b>TOUCHLINE.</b> YOUR CAREER. YOUR ELEVEN.</span><span class="keyboard-hints"><kbd>1</kbd>–<kbd>5</kbd> 메뉴 이동 <kbd>Esc</kbd> 닫기</span><button class="text-button" data-action="help">데이터와 추정 안내 <svg><use href="#i-arrow"/></svg></button></footer>
+  </main>
+  <dialog id="app-dialog" aria-labelledby="dialog-title"><div class="dialog-shell"><div class="dialog-header"><div><p id="dialog-eyebrow" class="eyebrow">TOUCHLINE STUDIO</p><h2 id="dialog-title"></h2></div><button class="icon-btn" data-action="close-dialog" aria-label="창 닫기"><svg><use href="#i-close"/></svg></button></div><div id="dialog-body"></div></div></dialog>
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+  <div id="drag-ghost" class="drag-ghost hidden" aria-hidden="true"></div>
+  <input id="data-file" type="file" accept=".json,.csv,application/json,text/csv" hidden>
+  <noscript><div class="noscript">이 스쿼드 빌더를 사용하려면 브라우저에서 JavaScript를 허용해주세요.</div></noscript>
+  <script>/* TOUCHLINE_MODEL */</script>
+  <script>/* TOUCHLINE_FC_IQ */</script>
+  <script>/* TOUCHLINE_PLAYSTYLES */</script>
+  <script>/* TOUCHLINE_CAREER_DEVELOPMENT */</script>
+  <script>/* TOUCHLINE_CAREER_MARKET */</script>
+  <script>/* TOUCHLINE_CORE */</script>
+  <script>/* TOUCHLINE_CAREER_RANKING */</script>
+  <script>/* TOUCHLINE_PLAYER_PROFILE */</script>
+  <script>/* TOUCHLINE_ADAPTER */</script>
+  <script>/* TOUCHLINE_AI_CONTEXT */</script>
+  <script>/* TOUCHLINE_AI_CHAT */</script>
+  <script>/* TOUCHLINE_CAREER_UI */</script>
+  <script>/* TOUCHLINE_APP */</script>
+</body>
+</html>

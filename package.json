@@ -1,0 +1,13 @@
+{
+  "name": "touchline-fc27-local",
+  "version": "2.0.0",
+  "private": true,
+  "description": "개인용 한국어 FC 27 커리어 스쿼드 빌더",
+  "scripts": {
+    "start": "node tools/launch.cjs",
+    "stop": "node tools/launch.cjs --stop",
+    "build": "node tools/build.cjs",
+    "test": "node --test tests/core.test.cjs tests/ai.test.cjs tests/fcradar.test.cjs tests/database.test.cjs tests/career.test.cjs tests/budget.test.cjs tests/stat-intent.test.cjs",
+    "preview": "node tools/preview.cjs"
+  }
+}
